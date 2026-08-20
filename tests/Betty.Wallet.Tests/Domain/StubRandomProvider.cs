@@ -1,5 +1,7 @@
 ﻿using Betty.Wallet.Domain;
 
+namespace Betty.Wallet.Tests.Domain;
+
 internal sealed class StubRandomProvider : IRandomProvider
 {
     private readonly Queue<double> _values;

@@ -1,5 +1,7 @@
 ﻿using Betty.Wallet.Domain;
 
+namespace Betty.Wallet.Tests.Domain;
+
 public class GameTests
 {
     [Theory]
