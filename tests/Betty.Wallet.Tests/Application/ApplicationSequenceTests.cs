@@ -1,6 +1,7 @@
 ﻿using Betty.Wallet.Application;
 using Betty.Wallet.Console;
 using Betty.Wallet.Domain;
+using Betty.Wallet.Tests.Domain;
 using WalletEntity = Betty.Wallet.Domain.Wallet;
 
 namespace Betty.Wallet.Tests.Application;
