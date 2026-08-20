@@ -50,9 +50,9 @@ Betty.Wallet.Application
 Betty.Wallet.Domain
 ```
  
-**Domain** owns the core rules and has no dependencies on anything else: `WalletEntity` (balance, deposits, withdrawals, bet placement/settlement — no public balance setter), `Game` (the $1–$10 bet range rule and outcome generation), `GameResult`/`GameOutcome`, and an `IRandomProvider` abstraction so the game engine never depends on a concrete source of randomness.
+**Domain** owns the core rules and has no dependencies on anything else: `Wallet` (balance, deposits, withdrawals, bet placement/settlement — no public balance setter), `Game` (the $1–$10 bet range rule and outcome generation), `GameResult`/`GameOutcome`, and an `IRandomProvider` abstraction so the game engine never depends on a concrete source of randomness.
  
-**Application** orchestrates the domain for a single logical operation and owns all user-facing validation: `WalletGameService` wraps a `WalletEntity` and a `Game`, exposes `Deposit`/`Withdraw`/`PlaceBet`, and returns an `OperationResult` describing what happened. `SystemRandomProvider` (the production `IRandomProvider` implementation, backed by `Random.Shared`) also lives here. `WalletGameService`'s parameterless constructor self-wires these production dependencies via constructor chaining, so `Console` never needs a reference to `Domain` at all.
+**Application** orchestrates the domain for a single logical operation and owns all user-facing validation: `WalletGameService` wraps a `Wallet` and a `Game`, exposes `Deposit`/`Withdraw`/`PlaceBet`, and returns an `OperationResult` describing what happened. `SystemRandomProvider` (the production `IRandomProvider` implementation, backed by `Random.Shared`) also lives here. `WalletGameService`'s parameterless constructor self-wires these production dependencies via constructor chaining, so `Console` never needs a reference to `Domain` at all.
  
 **Console** is the composition root and presentation layer: `CommandParser` turns raw input lines into structured commands, `OutputFormatter` turns results back into user-facing text, and `Program.cs` is a thin read/parse/dispatch/print loop with no domain logic of its own.
  
